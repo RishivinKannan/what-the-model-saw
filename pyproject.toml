@@ -1,0 +1,30 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "wtms"
+version = "0.1.0"
+description = "Fit an LLM's context into a token budget, and measure what each strategy costs in accuracy."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "Rishivin Kannan" }]
+dependencies = [
+    "tiktoken>=0.7",
+]
+
+[project.optional-dependencies]
+llm = ["openai>=1.40"]
+dev = ["pytest>=8", "ruff>=0.5"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/wtms"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
